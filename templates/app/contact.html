@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div id="contact-page" class="container">
+    <div class="bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center">Liên Hệ Với Chúng Tôi</h2>
+                <div id="gmap" class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.518703923747!2d105.81917361476303!3d21.01192158600752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab7dbe998e37%3A0x11cbb19d65fb8af6!2zMTIyIFRow6FpIEjDoCwgVHJ1bmcgTGnhu4d0LCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpIDEwMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1630201219859!5m2!1svi!2s"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="contact-form">
+                    <h2 class="title text-center">Gửi Phản Hồi Cho Shop</h2>
+                    {% if messages %} {% for mess in messages %}
+
+                    <p style="width: 60%;margin: auto;">{{ mess }}</p>
+                    {% endfor %} {% endif %}
+                    <div class="status alert alert-success" style="display: none"></div>
+                    <form action="" id=" main-contact-form " class="contact-form row " name="contact-form " method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group col-md-6 ">
+                            <label class="label-class" style="margin-top:10px ">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+
+                        <div class="form-group col-md-12">
+                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Gửi đi">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-4 ">
+                <div class="contact-info ">
+                    <h2 class="title text-center ">Thông Tin liên lạc </h2>
+                    <address>
+	    					<h2>E-GAMING</h2>
+							<p> <i class="fa fa-map-marker "></i>  122 Thái Hà, Trung Liệt, Đống Đa, Hà Nội </p>
+
+							<p><i class="fa fa-mobile-phone fa-2x "></i> 0814.515.062</p>
+							<p><i class="fa fa-envelope-o "></i> thanhphong@gmail.com</p>
+	    				</address>
+                    <div class="social-networks ">
+                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhoanghamobilecom&tabs=timeline&width=300&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId
+                    " width="300 " height="300 " style="border:none;overflow:hidden " scrolling="no " frameborder="0 " allowfullscreen="true " allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share "></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/#contact-page-->
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+     <section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active">Giỏ Hàng</li>
+                </ol>
+            </div>
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed" >
+                    <thead>
+                        <tr class="cart_menu">
+                            <td style="text-align: center;vertical-align: middle;"  class="image" ></td>
+                            <td style="text-align: center;vertical-align: middle;" class="description">Tên sản phẩm</td>
+                            <td style="text-align: center;vertical-align: middle;" class="price">Giá</td>
+                            <td style="text-align: left;vertical-align: middle;" class="quantity">Số Lượng</td>
+                            <td style="text-align: center;vertical-align: middle;" class="total">Tổng</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for order_item in order.items.all%}
+                        <tr>
+
+                            <td  rowspan="2" class="cart_product">
+                                <a href=""><img class="cart_product-img" style="width: 70px;height: 70px; margin: 0 30px 0 0 ;" src="{{ order_item.product.img.url }}" alt=""></a>
+                            </td>
+                            <td style="text-align: center;vertical-align: middle;" class="cart_description">
+                                <h4 style="margin-left: 30px"><a href="" style="text-align: center;padding: 20px" >{{ order_item.product.name |capfirst }}</a></h4>
+                            </td>
+
+                            <td style="text-align: center;vertical-align: middle;" class="cart_price">
+                                <p style="color:#fd475a;" >{{ order_item.product.price|floatformat:-3|intcomma }}đ </p>
+                            </td>
+                            <td  class="cart_quantity" style="vertical-align: baseline">
+                                <div class="cart_quantity_button" >
+                                    <a class="cart_quantity_up" href="{% url 'add_item' order_item.product.pk %}"> + </a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{ order_item.quantity }}" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down" href="{% url 'remove_item' order_item.product.pk %}"> - </a>
+                                </div>
+                            </td>
+                            <td style="text-align: center;vertical-align: middle;" class="cart_total">
+                                <p style="color:#fd475a;" class="cart_total_price">{{ order_item.get_total_item_price|floatformat:-3|intcomma }}đ</p>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!--/#cart_items-->
+
+    <section id="do_action">
+        <div class="container">
+            <div class="heading">
+                <h3>Bạn sẵn sàng thanh toán chưa ?</h3>
+                <p>Đây là tổng số tiền bạn cần thanh toán cho chúng tôi :)</p>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6 mx-0">
+                    {% if order.get_total_price %}
+                    <div class="total_area">
+                        <ul>
+                            <li>Tổng số mặt hàng<span>{{order.get_total_count}}</span></li>
+
+                            <li>Phí Ship <span>Free</span></li>
+                            <li>Tổng<span>{{ order.get_total_price|floatformat:-3|intcomma }}đ</span></li>
+                        </ul>
+                        <a class="btn btn-default update" href="{% url 'shop' %}">Quay lại Shop</a>
+                        <a class="btn btn-default check_out" href="{% url 'check_out' %}">Thủ tục thanh toán</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#do_action-->
+{% endblock %}

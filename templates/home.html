@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-GAMING</h1>
+                                <h2>Chào Hè Với Cơn Lốc Mua Sắm</h2>
+
+                                <button type="button" class="btn btn-default get">Bắt đầu ngay</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img  src=" {% static 'images/Shop/banner/1200x382.jpg' %}" class="girl img-responsive" alt="" />
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-GAMING</h1>
+                                <h2>Chào Hè Với Cơn Lốc Mua Sắm</h2>
+                                <button type="button" class="btn btn-default get">Bắt đầu ngay</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img  src=" {% static 'images/shop/banner/banner-web12.jpg' %}" class="girl img-responsive" alt="" />
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-GAMING</h1>
+                                <h2>Chào Hè Với Cơn Lốc Mua Sắm</h2>
+                                <button type="button" class="btn btn-default get">Bắt đầu ngay</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src=" {% static 'images/shop/banner/san-pham-hot-9t.png' %}" class="girl img-responsive" alt="" />
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Danh Mục</h2>
+
+                    {% for category in links %}
+                    <ul class="list-group">
+                        <li class="list-group-item list_group_item  " style="background-color: #f0ad4e;text-align: center"><a style="font-size: 20px;color: #FFFFFF; text-transform: uppercase; " href="{{ category.get_url }}">{{ category.category_name}}</a></li>
+                    </ul>
+                    {% endfor %}
+                    <!--/category-products-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Sản Phẩm Mới</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                {% for product in products|slice:":3" %}
+                                <div class="col-sm-4">
+
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <span class="badge" style="background-color: #5cb85c;font-size: 14px"> New</span>
+                                            <div class="productinfo text-center">
+                                                <img src=" {{ product.img.url }}" alt="" />
+
+                                               <div class="product-detail-text" style=" height: 80px; ">
+                                                <p style="text-align: center ;margin-bottom:10px ">{{ product.name|capfirst }}</p>
+                                                <h4 style="color:#fd475a;" >{{ product.price|floatformat:-3|intcomma }}đ</h4>
+
+                                                </div>
+
+                                            </div>
+                                            <div style="text-align: center;margin-bottom: 5px ">
+                                                <a href="{% url 'add_cart' product.pk %}" class="btn btn-default add-to-cart add_cart_item" ><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                            {# carolsel item #}
+                            <div class="item">
+
+                                {% for product in products|slice:"4:7" %}
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <span class="badge" style="background-color: #5cb85c;font-size: 14px"> New</span>
+                                            <div class="productinfo text-center">
+                                                <img src="{{ product.img.url }}" alt="" />
+                                                <div class="product-detail-text" style=" height: 80px; ">
+                                                    <p style="text-align: center ;margin-bottom:10px ">{{ product.name|capfirst }}</p>
+                                                    <h4 style="color:#fd475a;" >{{ product.price|floatformat:-3|intcomma }}đ</h4>
+
+                                                </div>
+
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <a href="{% url 'add_cart' product.pk %}" class="btn btn-default add-to-cart add_cart_item"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--/recommended_items-->
+
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center"> Tât Cả Sản Phẩm</h2>
+                    {% for product in products %}
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+
+                                <div class="productinfo text-center">
+
+                                    <a href="{% url 'product_details' product.pk %}" style="text-align: center"><img style="text-align: center" src="{{ product.img.url }}" alt="" /></a>
+
+                                    <div class="product-detail-text" style=" height: 80px; ">
+                                        <p style="text-align: center ;margin-bottom:10px ">{{ product.name|capfirst }}</p>
+                                        <h4 style="color:#fd475a;" >{{ product.price|floatformat:-3|intcomma }}đ</h4>
+
+                                    </div>
+                                    <div>
+                                         <a href="{% url 'product_details' product.pk %}" class="btn btn-default "><i class="fa fa-chevron-circle-right"></i>Xem Thêm</a>
+                                    </div>
+
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <p>{{ product.name|capfirst }}</p>
+                                        <h4 style="color:#fd475a;" >{{ product.price |floatformat:-3|intcomma}}đ </h4>
+
+                                        <div >
+                                        <a href="{% url 'product_details' product.pk %}" class="btn btn-default "><i class="fa fa-chevron-circle-right"></i>Xem Thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+                <!--features_items-->
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

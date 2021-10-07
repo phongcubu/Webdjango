@@ -1,0 +1,34 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section id="form"><!--form-->
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-6 col-sm-offset-4">
+            <div class="signup-form"><!--sign up form-->
+                <h2 style="text-align: center"> Đăng Ký Tài Khoản Mới!</h2>
+                  {% if messages %}
+                    {% for mess in messages   %}
+
+                    <p style="color: red">{{ mess }}</p>
+                    {% endfor %}
+
+                    {% endif %}
+                <form  method="post">
+                  {%  csrf_token %}
+                  <input type="text" name="username" id="username" placeholder="tên đăng nhập">
+                   <input type="email" name="email" id="email" placeholder="Email">
+                   <input type="password" name="password" id="password" placeholder="mật khẩu">
+                  <input type="password" name="confirm_password" id="confirm_password" placeholder="nhập lại mật khẩu">
+                  <input type="text" name="phone_field" id="phone_field" placeholder="số điện thoại">
+                    <button style="width: 80%; margin: auto" type="submit" class="btn btn-default">Đăng Ký</button>
+                </form>
+            </div><!--/sign up form-->
+        </div>
+    </div>
+</div>
+</section><!--/form-->
+{% endblock content%}
+
+

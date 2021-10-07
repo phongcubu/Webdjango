@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+{% load static %}
+ {% block content %}
+<section id="form"><!--form-->
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-6 col-sm-offset-4">
+            <div class="signup-form"><!--sign up form-->
+                <h2 style="text-align: center"> Thêm Sản Phẩm Mới !</h2>
+                {% if messages %}
+                    {% for mess in messages   %}
+                   <p style="color: red">{{ mess }}</p>
+                  {% endfor %}
+
+                {% endif %}
+                <form  method="post" enctype="multipart/form-data">
+                  {%  csrf_token %}
+                        {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+
+                        {% endfor %}
+                    <button type="submit" name ="add_product" id="add_product" class="btn btn-default" style="width: 50%; margin: auto">Thêm vào</button>
+                </form>
+            </div><!--/sign up form-->
+        </div>
+    </div>
+</div>
+</section><!--/form-->
+{% endblock content%}

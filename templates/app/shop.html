@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+        <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>E</span>-GAMING</h1>
+                                    <h2>Chào Hè Với Cơn Lốc Mua Sắm</h2>
+
+                                    <button type="button" class="btn btn-default get"><a href="{% url 'shop' %}" style="color: #FFFFFF">Bắt đầu ngay</a></button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src=" {% static 'images/Shop/banner/1200x382.jpg' %}" class="girl img-responsive" alt="" />
+
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>E</span>-GAMING</h1>
+                                    <h2>Chào Hè Với Cơn Lốc Mua Sắm</h2>
+                                    <button type="button" class="btn btn-default get"><a href="{% url 'shop' %}" style="color: #FFFFFF">Bắt đầu ngay</a></button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src=" {% static 'images/shop/banner/banner-web12.jpg' %}" class="girl img-responsive" alt="" />
+
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>E</span>-GAMING</h1>
+                                    <h2>Chào Hè Với Cơn Lốc Mua Sắm</h2>
+                                    <button type="button" class="btn btn-default get" >
+                                        <a href="{% url 'shop' %}" style="color: #FFFFFF">Bắt đầu ngay</a></button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src=" {% static 'images/shop/banner/san-pham-hot-9t.png' %}" class="girl img-responsive" alt="" />
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/slider-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Danh Mục</h2>
+
+                              {% for category in links %}
+                                  <ul class="list-group">
+                                  <li class="list-group-item list_group_item  " style="background-color: #f0ad4e;text-align: center" ><a style="font-size: 20px;color: #FFFFFF; text-transform: uppercase; "  href="{{ category.get_url }}">{{ category.category_name}}</a></li>
+
+                                </ul>
+
+                              {% endfor %}
+                        <!--/category-products-->
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-sm-9 padding-right">
+                    <div class="features_items">
+                  <h2 class="title text-center"> Tât Cả Sản Phẩm</h2>
+                          {% for product in products %}
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="{{ product.img.url }}" alt="" />
+                                        <div class="product-detail-text" style=" height: 80px; ">
+                                        <p style="text-align: center ;margin-bottom:10px ">{{ product.name|capfirst }}</p>
+                                        <h4 style="color:#fd475a;" >{{ product.price|floatformat:-3|intcomma }}đ</h4>
+
+                                        </div>
+                                        <a href="{% url 'product_details' product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-chevron-circle-right"></i>Xem Thêm</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h4 style="color:#fd475a;" >{{ product.price|floatformat:-3|intcomma }}đ </h4>
+                                            <p style="height: 87vw">{{ product.name }}</p>
+                                            <a href="{% url 'product_details' product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-chevron-circle-right"></i> Xem Thêm </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                          {% endfor %}
+
+
+                    </div>
+                    <!--features_items-->
+
+                                    {#  ========   Phân Trang   ========         #}
+               {% if products %}
+				<div class="mt-4" style="margin: auto; width: 50%" aria-label="Page navigation sample">
+					<ul class="pagination">
+						{% if products.has_previous %}
+						<li class="page-item">
+							<a class="page-link" href="{% url 'shop' %}?page=1">Đầu</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link"
+								href="{% url 'shop' %}?page={{products.previous_page_number}}">Trước</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link" href="#">Đầu</a>
+						</li>
+						<li class="page-item disabled">
+							<a class="page-link" href="#"> Trước</a>
+						</li>
+						{% endif %}
+						{% if products.number|add:'-2' >= 1 %}
+						<li class="page-item">
+							<a class="page-link" href="{% url 'shop' %}?page={{ products.number|add:'-2' }}">&hellip;</a>
+						</li>
+						{% endif %}
+						{% for page in products.paginator.page_range %}
+						{% if products.number|add:'-1' <= page and page <= products.number|add:'1' %}
+						{% if page == products.number %}
+						<li class="page-item active">
+							<a class="page-link" href="{% url 'shop' %}?page={{ page }}">{{ page }}</a>
+						</li>
+						{% else %}
+						<li class="page-item">
+							<a class="page-link" href="{% url 'shop' %}?page={{ page }}">{{ page }}</a>
+						</li>
+						{% endif %}
+						{% endif %}
+						{% endfor %}
+						{% if products.number|add:'2' <= products.paginator.num_pages %}
+						<li class="page-item">
+							<a class="page-link" href="{% url 'shop' %}?page={{ products.number|add:'2' }}">&hellip;</a>
+						</li>
+						{% endif %}
+						{% if products.has_next %}
+						<li class="page-item">
+							<a class="page-link" href="{% url 'shop' %}?page={{products.next_page_number}}">Sau</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link"
+								href="{% url 'shop' %}?page={{ products.paginator.num_pages }}">Cuối</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<a class="page-link" href="#">Sau</a>
+						</li>
+						<li class="page-item disabled">
+							<a class="page-link" href="#">Cuối</a>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+				{% endif %}
+                    {#  ========   Phân Trang   ========         #}
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+

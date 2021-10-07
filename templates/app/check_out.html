@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block content %}
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="{% url 'home' %}">Home</a></li>
+				  <li class="active">Thanh Toán</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+
+
+
+			<div class="register-req">
+				<p>Vui lòng điền thông tin đầy đủ để thuận tiện hơn trong việc vận chuyển đến tay quá khách hàng được chính xác!</p>
+			</div><!--/register-req-->
+
+			<div class="shopper-informations">
+				<div class="row">
+{#					<div class="col-sm-3">#}
+{#						<div class="shopper-info">#}
+{#							<p>Shopper Information</p>#}
+{#							<form>#}
+{#								<input type="text" placeholder="Display Name">#}
+{#								<input type="text" placeholder="User Name">#}
+{#								<input type="password" placeholder="Password">#}
+{#								<input type="password" placeholder="Confirm password">#}
+{#							</form>#}
+{#							<a class="btn btn-primary" href="">Get Quotes</a>#}
+{#							<a class="btn btn-primary" href="">Continue</a>#}
+{#						</div>#}
+{#					</div>#}
+					<div class="col-sm-7 clearfix">
+						<div class="bill-to">
+							<p>Thông tin khách hàng</p>
+							<div class="form-one">
+								<form>
+									<input type="text" placeholder="Họ và tên *">
+									<input type="text" placeholder="Email*">
+{#									<input type="text" placeholder="Title">#}
+{#									<input type="text" placeholder="First Name *">#}
+{#									<input type="text" placeholder="Middle Name">#}
+{#									<input type="text" placeholder="Last Name *">#}
+									<input type="text" placeholder="Địa chỉ  *">
+{#									<input type="text" placeholder="Address 2">#}
+								</form>
+							</div>
+							<div class="form-two">
+								<form>
+{#									<input type="text" placeholder="Zip / Postal Code *">#}
+									<select>
+										<option>-- Thành Phố --</option>
+										<option>An Giang</option>
+										<option>Bà rịa – Vũng tàu</option>
+										<option>Bắc Giang</option>
+										<option>Bắc Kạn</option>
+										<option>Bạc Liêu</option>
+										<option>Bắc Ninh</option>
+										<option>Bến Tre</option>
+										<option>Bình Định</option>
+                                        <option>Bình Dương</option>
+                                        <option>Bình Phước</option>
+                                        <option>Bình Thuận</option>
+                                        <option>Cà Mau</option>
+                                        <option>Cần Thơ</option>
+                                        <option>Cao Bằng </option>
+                                        <option>Đà Nẵng</option>
+                                        <option>Đắk Lắk</option>
+                                        <option>Đắk Nông</option>
+                                        <option>Điện Biên</option>
+                                        <option>Đồng Nai</option>
+                                        <option>Đồng Tháp</option>
+                                        <option>Gia Lai</option>
+                                        <option>Hà Giang</option>
+                                        <option>Hà Nam</option>
+                                        <option>Hà Nội </option>
+                                        <option>Hà Tĩnh</option>
+                                        <option>Hải Dương</option>
+                                        <option>Hải Phòng</option>
+                                        <option>Hậu Giang</option>
+                                        <option>Hòa Bình</option>
+                                        <option>Hưng Yên</option>
+                                        <option>Khánh Hòa</option>
+                                        <option>Kiên Giang</option>
+                                        <option>Kon Tum</option>
+                                        <option>Lai Châu</option>
+                                        <option>Lâm Đồng</option>
+                                        <option>Lạng Sơn</option>
+                                        <option>Lào Cai</option>
+                                        <option>Long An</option>
+                                        <option>Nam Định</option>
+                                        <option>Nghệ An</option>
+                                        <option>Ninh Bình</option>
+                                        <option>Ninh Thuận</option>
+                                        <option>Phú Thọ</option>
+                                        <option>Phú Yên</option>
+                                        <option>Quảng Bình</option>
+                                        <option>Quảng Nam</option>
+                                        <option>Quảng Ngãi</option>
+                                        <option>Quảng Ninh</option>
+                                        <option>Quảng Trị</option>
+                                        <option>Sóc Trăng</option>
+                                        <option>Sơn La</option>
+                                        <option>Tây Ninh</option>
+                                        <option>Thái Bình</option>
+                                        <option>Thái Nguyên</option>
+                                        <option>Thanh Hóa</option>
+                                        <option>Thừa Thiên Huế</option>
+                                        <option>Tiền Giang</option>
+                                        <option>Thành phố Hồ Chí Minh</option>
+                                        <option>Trà Vinh</option>
+                                        <option>Tuyên Quang</option>
+                                        <option>Vĩnh Long</option>
+                                        <option>Vĩnh Phúc</option>
+                                        <option>Yên Bái</option>
+
+									</select>
+
+									<input type="text" placeholder=" Số điện thoại * ">
+
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<div class="order-message">
+							<p>Ghi chú</p>
+							<textarea name="message"  placeholder="Ghi chú về đơn đặt hàng của bạn, Ghi chú đặc biệt khi giao hàng" rows="16"></textarea>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="review-payment">
+				<h2>Xem Lại & Thanh Toán</h2>
+			</div>
+
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Sản phẩm</td>
+							<td class="description"></td>
+							<td class="price">Giá</td>
+							<td class="quantity">Số Lượng</td>
+							<td class="total">Tổng</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+                       {% for order_item in order.items.all%}
+						<tr>
+							<td class="cart_product">
+								<a href=""><img style="width: 70px;height: 70px;margin: 0 30px 0 0;" src="{{ order_item.product.img.url }}" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{ order_item.product.name |capfirst }}</a></h4>
+
+							</td>
+							<td class="cart_price">
+								<p style="color:#fd475a;">{{ order_item.product.price|floatformat:-3|intcomma }}đ</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href="{% url 'add_item' order_item.product.pk %}"> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{ order_item.quantity }}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href="{% url 'remove_item' order_item.product.pk %}"> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p style="color:#fd475a;" class="cart_total_price">{{ order_item.get_total_item_price|floatformat:-3|intcomma }}đ</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+                       {% endfor %}
+
+{#						<tr>#}
+{#							<td class="cart_product">#}
+{#								<a href=""><img src="images/cart/two.png" alt=""></a>#}
+{#							</td>#}
+{#							<td class="cart_description">#}
+{#								<h4><a href="">Colorblock Scuba</a></h4>#}
+{#								<p>Web ID: 1089772</p>#}
+{#							</td>#}
+{#							<td class="cart_price">#}
+{#								<p>$59</p>#}
+{#							</td>#}
+{#							<td class="cart_quantity">#}
+{#								<div class="cart_quantity_button">#}
+{#									<a class="cart_quantity_up" href=""> + </a>#}
+{#									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">#}
+{#									<a class="cart_quantity_down" href=""> - </a>#}
+{#								</div>#}
+{#							</td>#}
+{#							<td class="cart_total">#}
+{#								<p class="cart_total_price">$59</p>#}
+{#							</td>#}
+{#							<td class="cart_delete">#}
+{#								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>#}
+{#							</td>#}
+{#						</tr>#}
+{#						<tr>#}
+{#							<td class="cart_product">#}
+{#								<a href=""><img src="images/cart/three.png" alt=""></a>#}
+{#							</td>#}
+{#							<td class="cart_description">#}
+{#								<h4><a href="">Colorblock Scuba</a></h4>#}
+{#								<p>Web ID: 1089772</p>#}
+{#							</td>#}
+{#							<td class="cart_price">#}
+{#								<p>$59</p>#}
+{#							</td>#}
+{#							<td class="cart_quantity">#}
+{#								<div class="cart_quantity_button">#}
+{#									<a class="cart_quantity_up" href=""> + </a>#}
+{#									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">#}
+{#									<a class="cart_quantity_down" href=""> - </a>#}
+{#								</div>#}
+{#							</td>#}
+{#							<td class="cart_total">#}
+{#								<p class="cart_total_price">$59</p>#}
+{#							</td>#}
+{#							<td class="cart_delete">#}
+{#								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>#}
+{#							</td>#}
+{#						</tr>#}
+                       {% if order.get_total_price %}
+						<tr>
+							<td colspan="4">&nbsp;</td>
+							<td colspan="2">
+								<table class="table table-condensed total-result">
+									<tr>
+										<td>Tổng số mặt hàng</td>
+										<td>{{order.get_total_count}}</td>
+									</tr>
+
+									<tr class="shipping-cost">
+										<td>Phí Ship </td>
+										<td>Free</td>
+									</tr>
+									<tr>
+										<td>Tổng</td>
+										<td><span>{{ order.get_total_price|floatformat:-3|intcomma }}đ</span></td>
+									</tr>
+                                    <tr>
+                                        <td></td>
+                                        <td> <span><a class="btn btn-default check_out" href="{% url 'check_out' %}">Thanh Toán</a></span></td>
+                                    </tr>
+								</table>
+							</td>
+						</tr>
+                   {% endif %}
+					</tbody>
+				</table>
+			</div>
+			<div class="payment-options">
+					<span>
+						<label><input type="checkbox"> Thanh Toán Qua Ngân Hàng</label>
+					</span>
+					<span>
+						<label><input type="checkbox"> Thanh Toán khi nhận hàng</label>
+					</span>
+					<span>
+						<label><input type="checkbox"> Thanh Toán qua các ví điện tử</label>
+					</span>
+
+            </div>
+
+		</div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}

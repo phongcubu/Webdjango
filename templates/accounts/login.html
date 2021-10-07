@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section id="form"><!--form-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-4">
+            <div class="login-form"><!--login form-->
+                <h2 style="text-align: center">Đăng Nhập Tài Khoản</h2>
+{#                {% if messages %}#}
+{#                    {% for mess in messages   %}#}
+{##}
+{#                    <p style="color: red">{{ mess }}</p>#}
+{#                    {% endfor %}#}
+{##}
+{#                {% endif %}#}
+                <form  method="post">
+                    {%  csrf_token %}
+                    <label for=""> Tên đăng nhập</label>
+                    <input type="text" name="username" id="username" placeholder="tên đăng nhập">
+                    <label for=""> Mật Khẩu</label>
+                    <input type="password" name="password" id="password" placeholder="mật khẩu">
+                    <p> Bạn đã có tài khoản chưa? <a href="{% url 'user_register' %}"> đăng ký</a></p>
+
+                    <button style="width: 80%; margin: auto" type="submit" class="btn btn-default">Đăng Nhập</button>
+                </form>
+            </div><!--/login form-->
+        </div>
+
+        </div>
+    </div>
+</div>
+</section><!--/form-->
+{% endblock content %}
+
+
+
+
+
+
+
